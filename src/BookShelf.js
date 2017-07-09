@@ -9,10 +9,11 @@ class BookShelf extends React.Component {
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {this.props.books.map((book) => {
-                            return <li>
+                            return <li key={book.name}>
                                 <Book bookImage={book.image}
                                       bookName={book.name}
-                                      bookAuthor={book.author}/>
+                                      bookAuthor={book.author}
+                                />
                             </li>
                         })}
                     </ol>
