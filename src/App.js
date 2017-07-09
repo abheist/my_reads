@@ -1,6 +1,7 @@
 import React from "react";
 import {Link, Route} from "react-router-dom";
 import BookShelfChanger from "./BookShelfChanger";
+import SearchBook from "./SearchBook";
 import "./App.css";
 
 class App extends React.Component {
@@ -11,20 +12,7 @@ class App extends React.Component {
                 <Route
                     path="/search"
                     render={() => (
-                        <div className="search-books">
-                            <div className="search-books-bar">
-                                <Link
-                                    className="close-search"
-                                    to="/"
-                                >Close</Link>
-                                <div className="search-books-input-wrapper">
-                                    <input type="text" placeholder="Search by title or author"/>
-                                </div>
-                            </div>
-                            <div className="search-books-results">
-                                <ol className="books-grid"/>
-                            </div>
-                        </div>
+                        <SearchBook />
                     )}
                 />
 
