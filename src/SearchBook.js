@@ -12,7 +12,7 @@ class SearchBook extends React.Component {
                         Close
                     </Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" placeholder="Search by title or author"/>
+                        <input type="text" placeholder="Search by title or author" />
                     </div>
                 </div>
                 <div className="search-books-results">
