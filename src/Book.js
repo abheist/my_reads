@@ -9,17 +9,16 @@ class Book extends React.Component {
                     <div className="book-cover" style={{
                         width: 128,
                         height: 193,
-                        backgroundImage: `url(${this.props.bookImage})`
+                        backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})`
                     }}></div>
                     <BookShelfChanger
-                        currentShelf={this.props.bookShelf}
+                        book={this.props.book}
                         changeBookShelf={this.props.changeBookShelf}
-                        bookId={this.props.bookId}
                     />
                 </div>
-                <div className="book-title">{this.props.bookName}</div>
+                <div className="book-title">{this.props.book.title}</div>
                 <div className="book-authors">
-                    {this.props.bookAuthor.map((author, i) =>
+                    {this.props.book.authors.map((author, i) =>
                         <span key={i}>
                             {!!i && ", "}
                             {author}

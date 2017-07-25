@@ -23,8 +23,8 @@ class App extends React.Component {
     }
 
     changeBookShelf(book, event) {
-        console.log("book id: " + book);
-        console.log(event.target.value)
+        BooksAPI.update(book, event.target.value);
+        
     }
 
     render() {
