@@ -7,24 +7,17 @@ import * as BooksAPI from "./BooksAPI"
 
 class App extends React.Component {
     state = {
-        currentlyReading: [],
-        wantToRead: [],
-        read: []
+        books: []
     };
 
     componentDidMount() {
         BooksAPI.getAll().then(books => {
-            this.setState((state) => ({
-                currentlyReading: books.filter(book => book.shelf === "currentlyReading"),
-                wantToRead: books.filter(book => book.shelf === "wantToRead"),
-                read: books.filter(book => book.shelf === "read")
-            }))
+            this.setState((state) => ({ books }))
         })
     }
 
-    changeBookShelf(book, event) {
-        BooksAPI.update(book, event.target.value);
-        
+    changeBookShelf = (book_to_change, event) => {
+        // BooksAPI.update(book_to_change, event.target.value);
     }
 
     render() {
@@ -47,19 +40,19 @@ class App extends React.Component {
                                     <BookShelf
                                         key="Currently Reading"
                                         shelfName="Currently Reading"
-                                        books={this.state.currentlyReading}
+                                        books={this.state.books.filter(book => book.shelf === "currentlyReading")}
                                         changeBookShelf={this.changeBookShelf}
                                     />
                                     <BookShelf
                                         key="Read"
                                         shelfName="Read"
-                                        books={this.state.read}
+                                        books={this.state.books.filter(book => book.shelf === "read")}
                                         changeBookShelf={this.changeBookShelf}
                                     />
                                     <BookShelf
                                         key="Want to Read"
                                         shelfName="Want to Read"
-                                        books={this.state.wantToRead}
+                                        books={this.state.books.filter(book => book.shelf === "wantToRead")}
                                         changeBookShelf={this.changeBookShelf}
                                     />
                                 </div>
