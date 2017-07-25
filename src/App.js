@@ -22,6 +22,11 @@ class App extends React.Component {
         })
     }
 
+    changeBookShelf(book, event) {
+        console.log("book id: " + book);
+        console.log(event.target.value)
+    }
+
     render() {
         return (
             <div className="app">
@@ -39,9 +44,24 @@ class App extends React.Component {
                             </div>
                             <div className="list-books-content">
                                 <div>
-                                    <BookShelf key="Currently Reading" shelfName="Currently Reading" books={this.state.currentlyReading} />
-                                    <BookShelf key="Want to Read" shelfName="Want to Read" books={this.state.wantToRead} />
-                                    <BookShelf key="Read" shelfName="Read" books={this.state.read} />
+                                    <BookShelf
+                                        key="Currently Reading"
+                                        shelfName="Currently Reading"
+                                        books={this.state.currentlyReading}
+                                        changeBookShelf={this.changeBookShelf}
+                                    />
+                                    <BookShelf
+                                        key="Read"
+                                        shelfName="Read"
+                                        books={this.state.read}
+                                        changeBookShelf={this.changeBookShelf}
+                                    />
+                                    <BookShelf
+                                        key="Want to Read"
+                                        shelfName="Want to Read"
+                                        books={this.state.wantToRead}
+                                        changeBookShelf={this.changeBookShelf}
+                                    />
                                 </div>
                             </div>
                             <div className="open-search">

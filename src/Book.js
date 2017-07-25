@@ -11,7 +11,11 @@ class Book extends React.Component {
                         height: 193,
                         backgroundImage: `url(${this.props.bookImage})`
                     }}></div>
-                    <BookShelfChanger />
+                    <BookShelfChanger
+                        currentShelf={this.props.bookShelf}
+                        changeBookShelf={this.props.changeBookShelf}
+                        bookId={this.props.bookId}
+                    />
                 </div>
                 <div className="book-title">{this.props.bookName}</div>
                 <div className="book-authors">
