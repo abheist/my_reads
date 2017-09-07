@@ -12,6 +12,7 @@ class SearchBook extends React.Component {
                         <input type="text"
                             placeholder="Search by title or author"
                             onChange={(event) => this.props.searchEveryBook(event.target.value)}
+                            autoFocus
                         />
                     </div>
                 </div>
