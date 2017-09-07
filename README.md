@@ -3,7 +3,7 @@ A bookshelf that will help you organise your books which you're currently readin
 This project is being developed while doing React-Nanodegree from @Udacity.
 
 
-### Install is damn easy
+### Installation is damn easy and fast ⚡️
 
 - `npm install`
 - `npm start`
