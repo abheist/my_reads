@@ -42,10 +42,15 @@ class App extends React.Component {
 	}
 
 	searchEveryBook = (query) => {
+		console.log(query, typeof (query));
 		const maxResult = 7;
-		BooksAPI.search(query, maxResult).then(res => {
-			this.setState(state => ({ bookResults: res }))
-		}).catch(this.resetSearchResultState);
+		if (query.length) {
+			BooksAPI.search(query, maxResult).then(res => {
+				this.setState(state => ({ bookResults: res }))
+			}).catch(this.resetSearchResultState);
+		} else {
+			this.resetSearchResultState()
+		}
 	}
 
 	render() {
