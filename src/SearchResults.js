@@ -15,6 +15,7 @@ class SearchResults extends Component {
 						<Book
 							key={book.id}
 							book={book}
+							booksInShelf={this.props.booksInShelf}
 							changeBookShelf={this.props.changeBookShelf}
 						/>
 					))}

@@ -32,7 +32,6 @@ class App extends React.Component {
 
 	updateBook = (book, shelf) => {
 		BooksAPI.update(book, shelf).then(res => {
-			console.log('updated book', book)
 			this.setBooksAgain()
 		})
 	}
@@ -42,7 +41,6 @@ class App extends React.Component {
 	}
 
 	searchEveryBook = (query) => {
-		console.log(query, typeof (query));
 		const maxResult = 7;
 		if (query.length) {
 			BooksAPI.search(query, maxResult).then(res => {
@@ -64,6 +62,7 @@ class App extends React.Component {
 						<SearchResults
 							changeBookShelf={this.changeBookShelf}
 							bookResults={this.state.bookResults}
+							booksInShelf={this.state.books}
 							resetSearchResultState={this.resetSearchResultState}
 						/>
 					</div>

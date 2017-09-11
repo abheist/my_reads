@@ -2,6 +2,16 @@ import React from "react";
 import BookShelfChanger from "./BookShelfChanger";
 
 class Book extends React.Component {
+
+    getBookShelf = () => {
+        for (const shelfBook of this.props.booksInShelf) {
+            if (shelfBook.id === this.props.book.id) {
+                return shelfBook.shelf;
+            }
+        }
+        return '';
+    }
+
     render() {
         return (
             <div className="book">
@@ -13,6 +23,7 @@ class Book extends React.Component {
                     }}></div>
                     <BookShelfChanger
                         book={this.props.book}
+                        bookShelf={this.getBookShelf()}
                         changeBookShelf={this.props.changeBookShelf}
                     />
                 </div>
