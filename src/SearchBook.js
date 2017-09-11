@@ -1,25 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchResults from "./SearchResults"
 
 class SearchBook extends React.Component {
+
+    searchBook(event) {
+        this.props.searchEveryBook(this.searchedString.value)
+    }
+
     render() {
         return (
-            <div className="search-books">
-                <div className="search-books-bar">
-                    <Link className="close-search" to="/">Close</Link>
-                    <div className="search-books-input-wrapper">
-                        <input type="text"
-                            placeholder="Search by title or author"
-                            onChange={(event) => this.props.searchEveryBook(event.target.value)}
-                            autoFocus
-                        />
-                    </div>
+            <div className="search-books-bar">
+                <Link className="close-search" to="/">Close</Link>
+                <div className="search-books-input-wrapper">
+                    <input type="text"
+                        placeholder="Search by title or author"
+                        onChange={(e) => this.searchBook(e)}
+                        ref={(input) => this.searchedString = input}
+                        autoFocus
+                    />
                 </div>
-                <SearchResults
-                    changeBookShelf={this.props.changeBookShelf}
-                    bookResults={this.props.bookResults}
-                />
             </div>
         )
     }

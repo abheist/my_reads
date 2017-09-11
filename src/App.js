@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import SearchBook from "./SearchBook";
 import BookShelf from "./BookShelf";
+import SearchResults from "./SearchResults"
 import "./App.css";
 import * as BooksAPI from "./BooksAPI";
 
@@ -36,37 +37,31 @@ class App extends React.Component {
 		})
 	}
 
-	searchEveryBook = (query, maxResults) => {
-		query.length === 0 && this.setState({ bookResults: [] })
+	resetSearchResultState = () => {
+		this.setState(state => ({ bookResults: [] }));
+	}
 
-		query.length > 0 &&
-			BooksAPI.search(query, maxResults).then(searchedBooks => {
-				if (!searchedBooks.error) {
-					searchedBooks.map((searchedBook) => {
-						let unmatched = this.state.books.filter(book => book.id !== searchedBook.id)
-						let match = this.state.books.filter(book => book.id === searchedBook.id)
-						if (match.length > 0) {
-							return searchedBook.shelf = match[0].shelf
-						}
-						if (unmatched.length > 0) {
-							return searchedBook.shelf = 'none'
-						}
-					})
-				}
-				searchedBooks.error || searchedBooks === undefined ? (this.setState({ bookResults: [] })) : (this.setState({ bookResults: searchedBooks }))
-			})
+	searchEveryBook = (query) => {
+		const maxResult = 7;
+		BooksAPI.search(query, maxResult).then(res => {
+			this.setState(state => ({ bookResults: res }))
+		}).catch(this.resetSearchResultState);
 	}
 
 	render() {
 		return (
 			<div className="app">
 				<Route path="/search" render={() => (
-					<SearchBook
-						searchEveryBook={this.searchEveryBook}
-						changeBookShelf={this.changeBookShelf}
-						bookResults={this.state.bookResults}
-						books={this.state.books}
-					/>
+					<div className="search-books">
+						<SearchBook
+							searchEveryBook={this.searchEveryBook}
+						/>
+						<SearchResults
+							changeBookShelf={this.changeBookShelf}
+							bookResults={this.state.bookResults}
+							resetSearchResultState={this.resetSearchResultState}
+						/>
+					</div>
 				)} />
 
 				<Route path="/" exact render={() => (

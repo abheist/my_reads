@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import Book from './Book'
 
 class SearchResults extends Component {
+
+	componentWillMount() {
+		this.props.resetSearchResultState()
+	}
+
 	render() {
 		return (
 			<div className="search-books-results">
