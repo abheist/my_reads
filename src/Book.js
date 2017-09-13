@@ -27,11 +27,12 @@ class Book extends React.Component {
                 </div>
                 <div className="book-title">{this.props.book.title}</div>
                 <div className="book-authors">
-                    {this.props.book.authors.map((author, i) =>
+                    {this.props.book.authors && this.props.book.authors.map((author, i) =>
                         <span key={i}>
                             {!!i && ", "}
                             {author}
-                        </span>)}
+                        </span>)
+                    }
                 </div>
             </div>
         )
