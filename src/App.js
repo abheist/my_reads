@@ -81,6 +81,7 @@ class App extends React.Component {
 									books={this.state.books.filter(
 										book => book.shelf === "currentlyReading"
 									)}
+									booksInShelf={this.state.books}
 									changeBookShelf={this.changeBookShelf}
 								/>
 								<BookShelf
@@ -89,6 +90,7 @@ class App extends React.Component {
 									books={this.state.books.filter(
 										book => book.shelf === "read"
 									)}
+									booksInShelf={this.state.books}
 									changeBookShelf={this.changeBookShelf}
 								/>
 								<BookShelf
@@ -97,6 +99,7 @@ class App extends React.Component {
 									books={this.state.books.filter(
 										book => book.shelf === "wantToRead"
 									)}
+									booksInShelf={this.state.books}
 									changeBookShelf={this.changeBookShelf}
 								/>
 							</div>

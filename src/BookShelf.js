@@ -12,6 +12,7 @@ class BookShelf extends React.Component {
                             return <li key={book.title}>
                                 <Book book={book}
                                     changeBookShelf={this.props.changeBookShelf}
+                                    booksInShelf={this.props.booksInShelf}
                                 />
                             </li>
                         })}
