@@ -16,11 +16,9 @@ class Book extends React.Component {
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{
-                        width: 128,
-                        height: 193,
-                        backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})`
-                    }}></div>
+                    <div className="book-cover"
+                        style={{ backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})` }}>
+                    </div>
                     <BookShelfChanger
                         book={this.props.book}
                         bookShelf={this.getBookShelf()}
