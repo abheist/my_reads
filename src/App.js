@@ -41,14 +41,23 @@ class App extends React.Component {
 		this.setState({ bookResults: [] });
 	}
 
+
+	sendRequestForSearch = debounce(function (query, maxResult) {
+		BooksAPI.search(query, maxResult).then(res => {
+			if (query.length) {
+				this.setState({ bookResults: res })
+			} else {
+				this.resetSearchResultState();
+			}
+		}).catch(this.resetSearchResultState);
+	}, 1000);
+
 	searchEveryBook = (query) => {
 		const maxResult = 7;
 		if (query.length) {
-			BooksAPI.search(query, maxResult).then(res => {
-				this.setState({ bookResults: res })
-			}).catch(this.resetSearchResultState);
+			this.sendRequestForSearch(query, maxResult);
 		} else {
-			this.resetSearchResultState()
+			this.resetSearchResultState();
 		}
 	}
 
