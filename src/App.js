@@ -50,7 +50,7 @@ class App extends React.Component {
 				this.resetSearchResultState();
 			}
 		}).catch(this.resetSearchResultState);
-	}, 1000);
+	}, 1000, { leading: false, trailing: true });
 
 	searchEveryBook = (query) => {
 		const maxResult = 7;
