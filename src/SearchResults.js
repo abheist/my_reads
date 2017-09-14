@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Book from './Book'
+import PropTypes from 'prop-types'
 
 class SearchResults extends Component {
 
@@ -24,5 +25,13 @@ class SearchResults extends Component {
 		)
 	}
 }
+
+SearchResults.propTypes = {
+	resetSearchResultState: PropTypes.func,
+	bookResults: PropTypes.array,
+	booksInShelf: PropTypes.array,
+	changeBookShelf: PropTypes.func
+}
+
 
 export default SearchResults
