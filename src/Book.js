@@ -13,21 +13,22 @@ class Book extends React.Component {
     }
 
     render() {
+        const { book } = this.props;
         return (
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover"
-                        style={{ backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})` }}>
+                        style={{ backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}>
                     </div>
                     <BookShelfChanger
-                        book={this.props.book}
+                        book={book}
                         bookShelf={this.getBookShelf()}
                         changeBookShelf={this.props.changeBookShelf}
                     />
                 </div>
-                <div className="book-title">{this.props.book.title}</div>
+                <div className="book-title">{book.title}</div>
                 <div className="book-authors">
-                    {this.props.book.authors ? (this.props.book.authors.map((author, i) =>
+                    {book.authors ? (book.authors.map((author, i) =>
                         <span key={i}>
                             {!!i && ", "}
                             {author}
