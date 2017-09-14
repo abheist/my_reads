@@ -5,6 +5,7 @@ import BookShelf from "./BookShelf";
 import SearchResults from "./SearchResults"
 import "./App.css";
 import * as BooksAPI from "./BooksAPI";
+import debounce from 'lodash.debounce'
 
 class App extends React.Component {
 	state = {
@@ -14,13 +15,13 @@ class App extends React.Component {
 
 	componentDidMount() {
 		BooksAPI.getAll().then(books => {
-			this.setState(state => ({ books }));
+			this.setState({ books });
 		});
 	}
 
 	setBooksAgain() {
 		BooksAPI.getAll().then(books => {
-			this.setState(state => ({ books }));
+			this.setState({ books });
 		});
 	}
 
@@ -37,14 +38,14 @@ class App extends React.Component {
 	}
 
 	resetSearchResultState = () => {
-		this.setState(state => ({ bookResults: [] }));
+		this.setState({ bookResults: [] });
 	}
 
 	searchEveryBook = (query) => {
 		const maxResult = 7;
 		if (query.length) {
 			BooksAPI.search(query, maxResult).then(res => {
-				this.setState(state => ({ bookResults: res }))
+				this.setState({ bookResults: res })
 			}).catch(this.resetSearchResultState);
 		} else {
 			this.resetSearchResultState()
