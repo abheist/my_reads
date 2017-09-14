@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types'
 
 class SearchBook extends React.Component {
 
@@ -22,6 +23,10 @@ class SearchBook extends React.Component {
             </div>
         )
     }
+}
+
+SearchBook.propTypes = {
+    searchEveryBook: PropTypes.func
 }
 
 export default SearchBook
