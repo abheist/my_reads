@@ -41,6 +41,14 @@ class App extends React.Component {
 		this.setState({ bookResults: [] });
 	}
 
+	convertToCamelCase = (str) => {
+		var out = "";
+		str.split(" ").forEach(function (el, idx) {
+			var add = el.toLowerCase();
+			out += (idx === 0 ? add : add[0].toUpperCase() + add.slice(1));
+		});
+		return out;
+	}
 
 	sendRequestForSearch = debounce(function (query, maxResult) {
 		BooksAPI.search(query, maxResult).then(res => {
@@ -85,33 +93,21 @@ class App extends React.Component {
 						</div>
 						<div className="list-books-content">
 							<div>
-								<BookShelf
-									key="Currently Reading"
-									shelfName="Currently Reading"
-									books={this.state.books.filter(
-										book => book.shelf === "currentlyReading"
-									)}
-									booksInShelf={this.state.books}
-									changeBookShelf={this.changeBookShelf}
-								/>
-								<BookShelf
-									key="Read"
-									shelfName="Read"
-									books={this.state.books.filter(
-										book => book.shelf === "read"
-									)}
-									booksInShelf={this.state.books}
-									changeBookShelf={this.changeBookShelf}
-								/>
-								<BookShelf
-									key="Want to Read"
-									shelfName="Want to Read"
-									books={this.state.books.filter(
-										book => book.shelf === "wantToRead"
-									)}
-									booksInShelf={this.state.books}
-									changeBookShelf={this.changeBookShelf}
-								/>
+								{
+									['Currently Reading', 'Read', 'Want to Read'].map(shelf =>
+										<BookShelf
+											key={shelf}
+											shelfName={shelf}
+											books={
+												this.state.books.filter(
+													book => book.shelf === this.convertToCamelCase(shelf)
+												)
+											}
+											booksInShelf={this.state.books}
+											changeBookShelf={this.changeBookShelf}
+										/>
+									)
+								}
 							</div>
 						</div>
 						<div className="open-search">
