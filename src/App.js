@@ -1,11 +1,13 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
+import debounce from 'lodash.debounce'
+
 import SearchBook from "./SearchBook";
 import BookShelf from "./BookShelf";
 import SearchResults from "./SearchResults"
-import "./App.css";
+
 import * as BooksAPI from "./BooksAPI";
-import debounce from 'lodash.debounce'
+import "./App.css";
 
 class App extends React.Component {
 	state = {
