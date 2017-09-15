@@ -16,7 +16,7 @@ const Book = (props) => {
         <div className="book">
             <div className="book-top">
                 <div className="book-cover"
-                    style={{ backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}>
+                    style={{ backgroundImage: book.imageLinks ? `url(${book.imageLinks.smallThumbnail})` : `url('http://via.placeholder.com/128x193?text=No%20Cover')` }}>
                 </div>
                 <BookShelfChanger
                     book={book}
