@@ -27,7 +27,7 @@ const Book = (props) => {
             <div className="book-title">{book.title}</div>
             <div className="book-authors">
                 {book.authors ? (book.authors.map((author, i) =>
-                    <span key={i}>
+                    <span key={author}>
                         {!!i && ", "}
                         {author}
                     </span>)) : ''
