@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce'
 import SearchBook from "./SearchBook";
 import BookShelf from "./BookShelf";
 import SearchResults from "./SearchResults"
+import Page404 from "./Page404"
 
 import * as BooksAPI from "./BooksAPI";
 import "./App.css";
@@ -74,50 +75,54 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="app">
-				<Route path="/search" render={() => (
-					<div className="search-books">
-						<SearchBook
-							searchEveryBook={this.searchEveryBook}
-						/>
-						<SearchResults
-							changeBookShelf={this.changeBookShelf}
-							bookResults={this.state.bookResults}
-							booksInShelf={this.state.books}
-							resetSearchResultState={this.resetSearchResultState}
-						/>
-					</div>
-				)} />
-
-				<Route path="/" exact render={() => (
-					<div className="list-books">
-						<div className="list-books-title">
-							<h1>MyReads</h1>
+				<switch>
+					<Route path="/search" render={() => (
+						<div className="search-books">
+							<SearchBook
+								searchEveryBook={this.searchEveryBook}
+							/>
+							<SearchResults
+								changeBookShelf={this.changeBookShelf}
+								bookResults={this.state.bookResults}
+								booksInShelf={this.state.books}
+								resetSearchResultState={this.resetSearchResultState}
+							/>
 						</div>
-						<div className="list-books-content">
-							<div>
-								{
-									['Currently Reading', 'Read', 'Want to Read'].map(shelf =>
-										<BookShelf
-											key={shelf}
-											shelfName={shelf}
-											books={
-												this.state.books.filter(
-													book => book.shelf === this.convertToCamelCase(shelf)
-												)
-											}
-											booksInShelf={this.state.books}
-											changeBookShelf={this.changeBookShelf}
-										/>
-									)
-								}
+					)} />
+
+					<Route path="/" exact render={() => (
+						<div className="list-books">
+							<div className="list-books-title">
+								<h1>MyReads</h1>
+							</div>
+							<div className="list-books-content">
+								<div>
+									{
+										['Currently Reading', 'Read', 'Want to Read'].map(shelf =>
+											<BookShelf
+												key={shelf}
+												shelfName={shelf}
+												books={
+													this.state.books.filter(
+														book => book.shelf === this.convertToCamelCase(shelf)
+													)
+												}
+												booksInShelf={this.state.books}
+												changeBookShelf={this.changeBookShelf}
+											/>
+										)
+									}
+								</div>
+							</div>
+							<div className="open-search">
+								<Link to="/search">Add a book</Link>
 							</div>
 						</div>
-						<div className="open-search">
-							<Link to="/search">Add a book</Link>
-						</div>
-					</div>
-				)}
-				/>
+					)}
+					/>
+
+					<Route component={Page404} />
+				</switch>
 			</div>
 		);
 	}
