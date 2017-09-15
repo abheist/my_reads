@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
+import { Switch, Link, Route } from "react-router-dom";
 import debounce from 'lodash.debounce'
 
 import SearchBook from "./SearchBook";
@@ -75,21 +75,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="app">
-				<switch>
-					<Route path="/search" render={() => (
-						<div className="search-books">
-							<SearchBook
-								searchEveryBook={this.searchEveryBook}
-							/>
-							<SearchResults
-								changeBookShelf={this.changeBookShelf}
-								bookResults={this.state.bookResults}
-								booksInShelf={this.state.books}
-								resetSearchResultState={this.resetSearchResultState}
-							/>
-						</div>
-					)} />
-
+				<Switch>
 					<Route path="/" exact render={() => (
 						<div className="list-books">
 							<div className="list-books-title">
@@ -121,8 +107,22 @@ class App extends React.Component {
 					)}
 					/>
 
+					<Route path="/search" render={() => (
+						<div className="search-books">
+							<SearchBook
+								searchEveryBook={this.searchEveryBook}
+							/>
+							<SearchResults
+								changeBookShelf={this.changeBookShelf}
+								bookResults={this.state.bookResults}
+								booksInShelf={this.state.books}
+								resetSearchResultState={this.resetSearchResultState}
+							/>
+						</div>
+					)} />
+
 					<Route component={Page404} />
-				</switch>
+				</Switch>
 			</div>
 		);
 	}
