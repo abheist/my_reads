@@ -54,7 +54,7 @@ class App extends React.Component {
 
 	sendRequestForSearch = debounce(function (query, maxResult) {
 		BooksAPI.search(query, maxResult).then(res => {
-			if (query.length) {
+			if (query.length && !res.error) {
 				this.setState({ bookResults: res })
 			} else {
 				this.resetSearchResultState();
