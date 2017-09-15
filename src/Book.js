@@ -1,5 +1,6 @@
 import React from "react";
 import BookShelfChanger from "./BookShelfChanger";
+import PropTypes from "prop-types"
 
 const Book = (props) => {
     const getBookShelf = () => {
@@ -34,6 +35,13 @@ const Book = (props) => {
             </div>
         </div>
     )
+}
+
+
+Book.propTypes = {
+    booksInShelf: PropTypes.array,
+    book: PropTypes.object,
+    changeBookShelf: PropTypes.func,
 }
 
 export default Book
